@@ -2,6 +2,14 @@ import os
 import sqlite3
 import alpaca_trade_api as tradeapi
 
+from dotenv import load_dotenv
+
+load_dotenv()
+api_key = os.getenv("api_key")
+secret_api_key = os.getenv("secret_api_key")
+domain = os.getenv("domain")
+
+
 connection = sqlite3.connect('app.db')
 
 cursor = connection.cursor()
@@ -13,7 +21,10 @@ for row in rows:
     print(row)
 
 #connect to api
-api = tradeapi.REST(os.environ.get("api_key"),os.environ.get("secret_api_key"), base_url=os.environ.get("domain"))
+
+
+api = tradeapi.REST(api_key,secret_api_key, base_url=domain)
+
 assets = api.list_assets() #get list of symbols
 
 for asset in assets: #loop through and print all assets 
