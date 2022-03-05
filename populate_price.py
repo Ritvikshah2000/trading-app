@@ -29,7 +29,7 @@ api = tradeapi.REST(api_key,secret_api_key, base_url=domain)
 
 chunk_size = 200 #loop in terms of chunks of 200
 for i in range(0,len(symbols), chunk_size): #loop through all symbols in steps of 200
-    symbol_chunk = symbols[i:i+chunk_size] 
+    symbol_chunk = symbols[i:i+chunk_size] #increment by chunksize
 
     barsets = api.get_barset(symbol_chunk, 'day') #get barsets for each chunk by day
  
